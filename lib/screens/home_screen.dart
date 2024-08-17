@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/card_swiper.dart';
+import '../widgets/movie_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,8 +24,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           CardSwiper(),
-          //TODO: Borrar comentario MovieSlider
-          //MovieSlider(),
+          MovieSlider(),
         ],
       ),
     );

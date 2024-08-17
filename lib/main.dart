@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas20243s/screens/details_screen.dart';
 
 import 'screens/home_screen.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (_) => HomeScreen(),
+        'details': (_) => DetailsScreen(),
       },
     );
   }
