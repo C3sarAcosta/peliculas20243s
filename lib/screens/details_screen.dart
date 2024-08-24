@@ -9,7 +9,17 @@ class DetailsScreen extends StatelessWidget {
     final String movie =
         ModalRoute.of(context)?.settings.arguments.toString() ?? 'Sin nombre';
     return const Scaffold(
-      body: Text('Details screen'),
+      body: CustomScrollView(
+        slivers: [
+          _CustomAppBar(),
+          SliverList(
+              delegate: SliverChildListDelegate.fixed([
+            _PosterAndTitle(),
+            _PosterAndTitle(),
+            _PosterAndTitle(),
+          ]))
+        ],
+      ),
     );
   }
 }
@@ -63,6 +73,42 @@ class _PosterAndTitle extends StatelessWidget {
               height: 250,
             ),
           ),
+          SizedBox(width: 20),
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'movie.titile',
+                  style: TextStyle(fontSize: 30),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+                Text(
+                  'movie.titileOriginal',
+                  style: TextStyle(fontSize: 18),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '#',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.star_outline,
+                      size: 20,
+                      color: Colors.blueAccent,
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
