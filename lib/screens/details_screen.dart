@@ -44,3 +44,27 @@ class _CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+class _PosterAndTitle extends StatelessWidget {
+  const _PosterAndTitle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: FadeInImage(
+              placeholder: AssetImage('assets/loading.gif'),
+              image: AssetImage('assets/no-image.jpg'),
+              height: 250,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
