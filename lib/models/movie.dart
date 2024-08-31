@@ -38,6 +38,13 @@ class Movie {
     return 'https://i.stack.imgur.com/Gnhx0.png';
   }
 
+  get fullBackdropPath {
+    if (this.posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+    }
+    return 'https://i.stack.imgur.com/Gnhx0.png';
+  }
+
   //factory Result.fromRawJson(String str) => Result.fromJson(json.decode(str));
 
   //String toRawJson() => json.encode(toJson());

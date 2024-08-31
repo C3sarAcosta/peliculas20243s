@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:peliculas20243s/models/credits_response.dart';
 import 'package:peliculas20243s/models/now_playing_response.dart';
 import 'package:peliculas20243s/models/popular_response.dart';
 
@@ -14,6 +15,7 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
+  Map<int, List<Cast>> moviesCast = {};
 
   MoviesProvider() {
     getOnDisplayMovies();
@@ -45,5 +47,20 @@ class MoviesProvider extends ChangeNotifier {
 
     popularMovies = [...popularMovies, ...popularResponse.results];
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMoviesCast(int movieId) async {
+    if (moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
+
+    var url = Uri.https(_baseUrl, '3/movie/$movieId/credits',
+        {'api_key': _apiKey, 'language': _language, 'page': '1'});
+
+    final response = await http.get(url);
+
+    final creditsResponse = CreditsResponse.fromJson(jsonDecode(response.body));
+
+    moviesCast[movieId] = creditsResponse.cast;
+
+    return creditsResponse.cast;
   }
 }
